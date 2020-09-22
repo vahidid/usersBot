@@ -31,6 +31,11 @@ class BotManController extends Controller
      */
     public function startConversation(BotMan $bot)
     {
-        $bot->startConversation(new StartConversation());
+        // Access user
+        $user = $bot->getUser();
+        // Access ID
+        $id = $user->getId();
+
+        $bot->startConversation(new StartConversation($id));
     }
 }

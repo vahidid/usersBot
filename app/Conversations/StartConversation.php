@@ -12,6 +12,13 @@ class StartConversation extends Conversation
     protected $fullname;
 
     protected $phoneNumber;
+
+    protected $id;
+
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
     /**
      * First question
      */
@@ -60,6 +67,7 @@ class StartConversation extends Conversation
             $this->phoneNumber = $answer->getText();
 
             $user = new App\User;
+            $user->telegram_id = $this->id;
             $user->name = $this->fullname;
             $user->phoneNumber = $this->phoneNumber;
             $user->save();
